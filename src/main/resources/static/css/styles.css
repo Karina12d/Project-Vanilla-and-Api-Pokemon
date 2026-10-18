@@ -1,0 +1,24 @@
+
+.artist-card {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.col-12:nth-child(6n + 1) .artist-card { background-color: #fdf2f8; } /* Rosa pastel */
+.col-12:nth-child(6n + 2) .artist-card { background-color: #eff6ff; } /* Celeste pastel */
+.col-12:nth-child(6n + 3) .artist-card { background-color: #fefce8; } /* Amarillo pastel */
+.col-12:nth-child(6n + 4) .artist-card { background-color: #f0fdf4; } /* Verde pastel */
+.col-12:nth-child(6n + 5) .artist-card { background-color: #faf5ff; } /* Lavanda pastel */
+.col-12:nth-child(6n + 6) .artist-card { background-color: #fff7ed; } /* Durazno pastel */
+
+.artist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.08) !important;
+    filter: brightness(0.97);
+}
+
+.modal {
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(6px);
+}

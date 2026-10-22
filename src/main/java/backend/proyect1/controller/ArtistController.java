@@ -15,18 +15,16 @@ public class ArtistController {
 
     private final ArtistService artistService;
 
-    // Inyección de dependencias por constructor
     public ArtistController(ArtistService artistService) {
         this.artistService = artistService;
     }
 
-    // 1. LISTAR TODOS (GET)
     @GetMapping
     public List<Artist> getAllArtists() {
         return artistService.getAllArtists();
     }
 
-    // 2. OBTENER UNO POR ID (GET)
+
     @GetMapping("/{id}")
     public ResponseEntity<Artist> getArtistById(@PathVariable(value = "id") Integer id) {
         try {
@@ -40,14 +38,12 @@ public class ArtistController {
         }
     }
 
-    // 3. CREAR ARTISTA (POST)
     @PostMapping
     public ResponseEntity<Artist> saveArtist(@RequestBody Artist artist) {
         Artist savedArtist = artistService.saveArtist(artist);
         return new ResponseEntity<>(savedArtist, HttpStatus.CREATED);
     }
 
-    // 4. ACTUALIZAR ARTISTA (PUT)
     @PutMapping("/{id}")
     public ResponseEntity<Artist> updateArtist(@PathVariable(value = "id") Integer id, @RequestBody Artist artistDetails) {
         try {
@@ -66,7 +62,6 @@ public class ArtistController {
         }
     }
 
-    // 5. ELIMINAR ARTISTA (DELETE)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArtist(@PathVariable(value = "id") Integer id) {
         try {

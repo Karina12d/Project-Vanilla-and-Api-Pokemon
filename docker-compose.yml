@@ -1,0 +1,93 @@
+services:
+  # ---------- DEV ----------
+  app_project1:
+    build: C:\Users\Kari\Documents\Programación Web\project1
+    mem_limit: 512m
+    ports:
+      - "8001:8001"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_URLD: jdbc:postgresql://db_dev:5432/devchinook
+      DB_UserName: ${DB_USER}
+      DB_Password: ${DB_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    restart: always
+    depends_on:
+      db_dev:
+        condition: service_healthy
+
+  db_dev:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: devchinook
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d devchinook"]
+      timeout: 10s
+      retries: 10
+
+  # ---------- TEST ----------
+  app_test:
+    build: C:\Users\Kari\Documents\Programación Web\project1
+    mem_limit: 512m
+    ports:
+      - "8002:8002"
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+      DB_URLT: jdbc:postgresql://db_test:5432/testchinook
+      DB_UserName: ${DB_USER}
+      DB_Password: ${DB_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    restart: always
+    depends_on:
+      db_test:
+        condition: service_healthy
+
+  db_test:
+    image: postgres:16
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: testchinook
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d testchinook"]
+      timeout: 10s
+      retries: 10
+
+  # ---------- PROD ----------
+  app_prod:
+    build: C:\Users\Kari\Documents\Programación Web\project1
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URLP: jdbc:postgresql://db_prod:5432/prodchinook
+      DB_UserName: ${DB_USER}
+      DB_Password: ${DB_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    restart: always
+    depends_on:
+      db_prod:
+        condition: service_healthy
+
+  db_prod:
+    image: postgres:16
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: prodchinook
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d prodchinook"]
+      timeout: 10s
+      retries: 10

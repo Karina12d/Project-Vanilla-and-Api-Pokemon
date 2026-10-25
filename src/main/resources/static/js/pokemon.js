@@ -64,7 +64,7 @@ function renderPokemonGrid(pokemons) {
 
 async function fetchNestedDetails(pokemonName) {
     try {
-        const response = await fetch(`http://localhost:8080/api/pokemon/${pokemonName}`);
+        const response = await fetch(`/api/pokemon/${pokemonName}`);
         if (!response.ok) throw new Error("Could not fetch nested data");
 
         const data = await response.json();

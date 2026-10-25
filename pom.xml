@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>backend</groupId>
 	<artifactId>project1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name/>
+	<version>0.0.1</version>
+	<name>project1</name>
 	<description/>
 	<url/>
 	<licenses>
